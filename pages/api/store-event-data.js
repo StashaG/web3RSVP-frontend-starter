@@ -1,7 +1,7 @@
 import { Web3Response, File, getFilesFromPath, Web3Storage } from "web3.storage";
 const { resolve } = require("path");
 
-export default async function handler(req, res);{
+export default async function handler(req, res){
     if (req.method === "POST") {
         return await storeEventData(req, res);
     } else {
