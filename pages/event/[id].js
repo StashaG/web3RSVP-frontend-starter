@@ -1,14 +1,14 @@
 import { useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import { gql } from "@apollo/client";
+import client from "../../apollo-client";
 import { ethers } from "ethers";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 import connectContract from "../../utils/connectContract";
-import Alert from "../../components/Alert";
-import Head from "next/head";
-import { gql } from "@apollo/client";
-import client from "../../apollo-client";
 import formatTimestamp from "../../utils/formatTimestamp";
-import Image from "next/image";
+import Alert from "../../components/Alert";
 import {
   EmojiHappyIcon,
   TicketIcon,
@@ -39,6 +39,7 @@ function Event({ event }) {
   const newRSVP = async () => {
     try {
       const rsvpContract = connectContract();
+
       if (rsvpContract) {
         const txn = await rsvpContract.createNewRSVP(event.id, {
           value: event.deposit,
@@ -215,3 +216,7 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+export const config = {
+  unstable_excludeFiles: ["public/**/*"],
+};
