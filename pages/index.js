@@ -34,6 +34,7 @@ export default function Home() {
         <p>`Error! ${error.message}`</p>
       </Landing>
     );
+    
   return (
     <Landing>
       <ul
