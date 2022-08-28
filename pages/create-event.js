@@ -10,10 +10,6 @@ import Alert from "../components/Alert";
 
 export default function CreateEvent() {
   const { data: account } = useAccount();
-  const [success, setSuccess] = useState(null);
-  const [message, setMessage] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [eventID, setEventID] = useState(null);
 
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState("");
@@ -22,6 +18,11 @@ export default function CreateEvent() {
   const [refund, setRefund] = useState("");
   const [eventLink, setEventLink] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+
+  const [success, setSuccess] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [eventID, setEventID] = useState(null);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -72,13 +73,13 @@ export default function CreateEvent() {
           eventDataCID,
           { gasLimit: 900000 }
         );
+
         setLoading(true);
         console.log("Minting...", txn.hash);
         let wait = await txn.wait();
         console.log("Minted -- ", txn.hash);
 
         setEventID(wait.events[0].args[0]);
-
         setSuccess(true);
         setLoading(false);
         setMessage("Your event has been created successfully.");
