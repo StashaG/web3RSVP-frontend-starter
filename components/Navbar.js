@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useTheme } from 'next-themes';
+import { MoonIcon, SunIcon } from '@heroicons/react/solid'
 import Link from "next/link";
 import Navmenu from "./Navmenu";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -7,23 +9,42 @@ import { useAccount, useDisconnect } from "wagmi";
 export default function Navbar() {
   const { data: account } = useAccount();
   const { disconnect } = useDisconnect();
+  const {systemTheme, theme, setTheme} = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const renderThemeChanger = () => {
+    if (!mounted) return null;
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+
+    if (currentTheme === 'dark') {
+      return (
+        <SunIcon className="w-7 h-7" role="button" onClick={()=> setTheme
+        ('light')} />
+      )
+    }
+    else {
+      return (
+        <MoonIcon className="w-7 h-7" role="button" onClick={() => setTheme
+        ('dark')} />
+      )
+    }
+  }
+
   return (
     mounted && (
-      <header className="bg-white border-b-2 border-gray-100">
+      <header className="bg-white border-b-2 border-gray-100 dark:border-gray-700">
         <nav
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center"
           aria-label="Top"
         >
           <div className="w-full py-6 flex flex-wrap items-center justify-between border-b border-indigo-500 lg:border-none">
             <div className="flex items-center">
               <Link href="/">
-                <a>web3rsvp</a>
+                <a><span text-gray-700>web3rsvp</span></a>
               </Link>
             </div>
             <div className="ml-10 space-x-4 flex items-center">
@@ -32,6 +53,7 @@ export default function Navbar() {
                   Create Event
                 </a>
               </Link>
+              {renderThemeChanger()}
               {account ? (
                 <Navmenu account={account} disconnect={() => disconnect()} />
               ) : (
