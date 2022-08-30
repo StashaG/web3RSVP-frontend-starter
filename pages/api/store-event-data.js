@@ -24,6 +24,12 @@ async function storeEventData(req, res) {
     }    
 }
 
+async function storeFiles(files) {
+    const client = makeStorageClient();
+    const cid = await client.put(files);
+    return cid;
+}
+
 async function makeFileObjects(body) {
     const buffer = Buffer.from(JSON.stringify(body));
 
@@ -31,15 +37,10 @@ async function makeFileObjects(body) {
     const files = await getFilesFromPath(imageDirectory);
 
     files.push(new File([buffer], "data.json"));
+    console.log(files);
     return files;
 }
 
 function makeStorageClient() {
     return new Web3Storage({ token: process.env.WEB3STORAGE_TOKEN});
-}
-
-async function storeFiles(files) {
-    const client = makeStorageClient();
-    const cid = await client.put(files);
-    return cid;
 }
