@@ -1,4 +1,4 @@
-import { Web3Response, File, getFilesFromPath, Web3Storage } from "web3.storage";
+import { Web3Storage, File, getFilesFromPath, Web3Storage } from "web3.storage";
 const { resolve } = require("path");
 
 export default async function handler(req, res){
