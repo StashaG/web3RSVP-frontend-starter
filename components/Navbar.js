@@ -22,7 +22,7 @@ export default function Navbar() {
 
     if (currentTheme === 'dark') {
       return (
-        <SunIcon className="w-7 h-7" role="button" onClick={()=> setTheme
+        <SunIcon className="w-7 h-7 dark:text-black" role="button" onClick={()=> setTheme
         ('light')} />
       )
     }
@@ -44,7 +44,7 @@ export default function Navbar() {
           <div className="w-full py-6 flex flex-wrap items-center justify-between border-b border-indigo-500 lg:border-none">
             <div className="flex items-center">
               <Link href="/">
-                <a><span text-gray-700>web3rsvp</span></a>
+                <a className="dark:text-black"><span text-gray-700>web3rsvp</span></a>
               </Link>
             </div>
             <div className="ml-10 space-x-4 flex items-center">

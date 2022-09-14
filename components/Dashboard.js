@@ -35,7 +35,7 @@ export default function Dashboard({ page, isUpcoming, children }) {
       <div className="flex flex-wrap py-8">
         <DashboardNav page={page} />
         <div className="sm:w-10/12 sm:pl-8">
-          <h1 className="text-2xl tracking-tight font-extrabold text-gray-900 text-sky-800 sm:text-3xl md:text-4xl mb-4">
+          <h1 className="text-2xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-3xl md:text-4xl mb-4">
             {page == "events" ? "My Events" : "My RSVPs"}
           </h1>
           <div className="sm:hidden">

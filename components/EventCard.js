@@ -14,7 +14,7 @@ export default function EventCard({ id, name, eventTimestamp, imageURL }) {
       <p className="mt-2 block text-sm text-gray-500">
         {formatTimestamp(eventTimestamp)}
       </p>
-      <p className="block text-base font-medium text-gray-900">{name}</p>
+      <p className="block text-base font-medium text-gray-900 dark:text-white">{name}</p>
     </div>
   );
 }
